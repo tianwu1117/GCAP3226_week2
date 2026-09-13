@@ -1,6 +1,9 @@
 FROM mcr.microsoft.com/devcontainers/python:3.12-bookworm
+<<<<<<< HEAD
 
 USER root
+=======
+>>>>>>> c58accbb8cbe1b1997dd42025b5faf110c217179
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends poppler-utils \
