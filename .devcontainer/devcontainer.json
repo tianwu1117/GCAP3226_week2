@@ -1,9 +1,10 @@
 {
   "name": "GCAP3226 Week 2",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "context": ".."
   },
-  "postCreateCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "python -m pip --version",
   "customizations": {
     "vscode": {
       "extensions": [
