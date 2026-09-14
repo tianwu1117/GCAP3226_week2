@@ -1,230 +1,344 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Policy priorities | 2025 Policy Address</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Policy priorities</title>
   <style>
     :root {
-      --ink: #18242b;
-      --muted: #66757c;
-      --paper: #f5f1e9;
-      --panel: #fffdf8;
-      --line: #d9ded8;
-      --accent: #c44f35;
-      --accent-dark: #863523;
-      --blue: #315d67;
-      --shadow: 0 12px 28px rgba(24, 36, 43, .08);
+      --bg: #f7f2ea;
+      --panel: #fffdf9;
+      --ink: #1f2d32;
+      --muted: #58656d;
+      --line: #d7d0c8;
+      --accent: #b74c32;
+      --accent-2: #2c5d69;
+      --shadow: 0 12px 24px rgba(31, 45, 50, 0.07);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
+      background: var(--bg);
       color: var(--ink);
-      background: var(--paper);
-      font-family: Georgia, 'Times New Roman', serif;
-      line-height: 1.5;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
     }
-    body::before {
-      content: '';
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.05;
+    }
+    .lead {
+      margin: 0 0 20px;
+      color: var(--muted);
+      max-width: 800px;
+    }
+    .search-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 14px 16px 14px 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 1rem;
+    }
+    .search-wrap .icon {
+      position: absolute;
+      left: 14px;
+      top: 15px;
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .tab {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--accent-2);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+      color: white;
+    }
+    #status {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .theme {
+      display: none;
+      grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+      gap: 18px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+    .theme.visible {
+      display: grid;
+    }
+    .theme h2 {
+      margin: 0;
+      font-size: clamp(1.3rem, 2vw, 1.9rem);
+    }
+    .chapter-cue {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .bullets {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .bullet {
+      background: var(--panel);
+      border-left: 4px solid var(--accent);
+      box-shadow: var(--shadow);
+      padding: 12px 14px 12px 16px;
+    }
+    .bullet strong {
       display: block;
-      height: 9px;
-      background: repeating-linear-gradient(135deg, var(--accent) 0 18px, #e7b35a 18px 36px, var(--blue) 36px 54px);
+      margin-bottom: 6px;
+      font-size: 1.04rem;
     }
-    .shell { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
-    header { padding: 56px 0 32px; max-width: 780px; }
-    .eyebrow { margin: 0 0 10px; color: var(--accent-dark); font: 700 .76rem/1.2 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-    h1 { margin: 0; font-size: clamp(2.4rem, 6vw, 5.3rem); line-height: .95; letter-spacing: -.03em; font-weight: 700; }
-    .lede { margin: 22px 0 0; color: var(--muted); font-size: 1.12rem; max-width: 640px; }
-    .controls { display: grid; gap: 18px; margin: 10px 0 30px; }
-    .search-wrap { position: relative; }
-    .search-wrap label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    #search { width: 100%; border: 1px solid var(--line); border-radius: 3px; background: var(--panel); color: var(--ink); padding: 15px 18px 15px 46px; font: 1rem Georgia, serif; box-shadow: 0 4px 10px rgba(24,36,43,.03); }
-    #search:focus { outline: 3px solid rgba(196,79,53,.22); border-color: var(--accent); }
-    .search-mark { position: absolute; left: 17px; top: 12px; color: var(--accent); font: 1.4rem Arial, sans-serif; }
-    .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tab { border: 1px solid var(--line); border-radius: 2px; padding: 9px 13px; background: transparent; color: var(--blue); cursor: pointer; font: 700 .82rem Arial, sans-serif; text-align: left; }
-    .tab:hover, .tab.active { background: var(--blue); border-color: var(--blue); color: white; }
-    main { padding-bottom: 58px; }
-    .status { margin: 0 0 14px; color: var(--muted); font: .82rem Arial, sans-serif; }
-    .theme { display: none; grid-template-columns: minmax(190px, .7fr) 1.8fr; gap: 28px; padding: 30px 0; border-top: 1px solid var(--line); animation: appear .28s ease both; }
-    .theme.visible { display: grid; }
-    .theme h2 { margin: 0; font-size: clamp(1.45rem, 3vw, 2.1rem); line-height: 1.08; }
-    .chapter { display: inline-block; margin-top: 10px; color: var(--accent-dark); font: 700 .74rem/1.2 Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
-    .priorities { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; }
-    .priority { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 14px 16px; background: var(--panel); border-left: 4px solid var(--accent); box-shadow: var(--shadow); }
-    .priority::before { content: '↳'; color: var(--accent); font-size: 1.25rem; line-height: 1.1; }
-    .priority strong { display: block; font-size: 1.04rem; font-weight: 700; }
-    .cue { display: block; margin-top: 4px; color: var(--muted); font: .76rem Arial, sans-serif; }
-    .empty { display: none; padding: 30px 0; color: var(--muted); }
-    footer { border-top: 1px solid var(--line); padding: 21px 0 42px; color: var(--muted); font: .78rem/1.5 Arial, sans-serif; }
-    footer strong { color: var(--ink); }
-    @keyframes appear { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .cue {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .empty {
+      display: none;
+      padding: 18px 0;
+      color: var(--muted);
+    }
+    footer {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
     @media (max-width: 700px) {
-      .shell { width: min(100% - 26px, 1180px); }
-      header { padding-top: 38px; }
-      .theme { grid-template-columns: 1fr; gap: 16px; }
-      .tab { flex: 1 1 145px; }
+      .theme { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header>
-      <p class="eyebrow">Contents-led reading guide</p>
-      <h1>Policy priorities</h1>
-      <p class="lede">A navigable summary of the Chief Executive's 2025 Policy Address, built from the PDF's chapter and section headings.</p>
-    </header>
+  <div class="container">
+    <h1>Policy priorities</h1>
+    <p class="lead">Summary built only from the Contents and chapter headings in the PDF. Each bullet is tied to the relevant chapter or section cue.</p>
 
-    <div class="controls">
-      <div class="search-wrap">
-        <label for="search">Search policy priorities</label>
-        <span class="search-mark" aria-hidden="true">⌕</span>
-        <input id="search" type="search" placeholder="Search themes, measures, or paragraph cues..." autocomplete="off">
-      </div>
-      <nav class="tabs" aria-label="Policy themes">
-        <button class="tab active" data-theme="all" aria-pressed="true">All themes</button>
-        <button class="tab" data-theme="livelihood">Livelihood</button>
-        <button class="tab" data-theme="governance">Governance</button>
-        <button class="tab" data-theme="north">Northern Metropolis</button>
-        <button class="tab" data-theme="industry">Industry</button>
-        <button class="tab" data-theme="national">National development</button>
-        <button class="tab" data-theme="hub">International hub</button>
-        <button class="tab" data-theme="talent">Education & talent</button>
-        <button class="tab" data-theme="culture">Culture & tourism</button>
-        <button class="tab" data-theme="society">Living & society</button>
-      </nav>
+    <div class="search-wrap">
+      <span class="icon" aria-hidden="true">⌕</span>
+      <label for="search" style="position:absolute;left:-9999px;">Search policy priorities</label>
+      <input id="search" type="search" placeholder="Search by theme or section name..." />
     </div>
 
-    <main>
-      <p class="status" id="status" aria-live="polite"></p>
-      <section class="theme visible" data-theme="livelihood">
-        <div><h2>Reform and livelihood</h2><span class="chapter">Chapter I · paras 1–9</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Deepen reforms</strong><span class="cue">Chapter I title; paras 1–9</span></div></li>
-          <li class="priority"><div><strong>Commit to people's livelihood</strong><span class="cue">Chapter I title; paras 1–9</span></div></li>
-          <li class="priority"><div><strong>Use the economy and people's livelihood as linked policy pillars</strong><span class="cue">Chapter I, paras 2 and 4</span></div></li>
-          <li class="priority"><div><strong>Cover land and housing, transport, healthcare, social welfare, labour protection, and a caring and inclusive society</strong><span class="cue">Chapter I, para 8</span></div></li>
-        </ul>
-      </section>
+    <nav class="tabs" aria-label="Policy themes">
+      <button class="tab active" data-theme="all" aria-pressed="true">All</button>
+      <button class="tab" data-theme="livelihood" aria-pressed="false">Livelihood</button>
+      <button class="tab" data-theme="governance" aria-pressed="false">Governance</button>
+      <button class="tab" data-theme="north" aria-pressed="false">Northern Metropolis</button>
+      <button class="tab" data-theme="industry" aria-pressed="false">Industry</button>
+      <button class="tab" data-theme="national" aria-pressed="false">National development</button>
+      <button class="tab" data-theme="hub" aria-pressed="false">International hub</button>
+      <button class="tab" data-theme="talent" aria-pressed="false">Education &amp; talent</button>
+      <button class="tab" data-theme="culture" aria-pressed="false">Culture &amp; tourism</button>
+      <button class="tab" data-theme="society" aria-pressed="false">Living &amp; society</button>
+    </nav>
 
-      <section class="theme" data-theme="governance">
-        <div><h2>Governance systems</h2><span class="chapter">Chapter II · paras 10–42</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Implement the &ldquo;One Country, Two Systems&rdquo; principle</strong><span class="cue">Chapter II(A), paras 10–22</span></div></li>
-          <li class="priority"><div><strong>Safeguard national security</strong><span class="cue">Chapter II(A), paras 15–18</span></div></li>
-          <li class="priority"><div><strong>Implement &ldquo;Patriots Administering Hong Kong&rdquo;</strong><span class="cue">Chapter II(A), paras 19–20</span></div></li>
-          <li class="priority"><div><strong>Promote patriotic education</strong><span class="cue">Chapter II(B), paras 23–28</span></div></li>
-          <li class="priority"><div><strong>Further enhance governance, including accountability, civil-service appraisal, and AI efficacy</strong><span class="cue">Chapter II(C), paras 29–42</span></div></li>
-        </ul>
-      </section>
+    <p id="status" aria-live="polite"></p>
 
-      <section class="theme" data-theme="north">
-        <div><h2>Northern Metropolis</h2><span class="chapter">Chapter III · paras 43–54</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Establish the Committee on Development of the Northern Metropolis</strong><span class="cue">Chapter III(A), para 45</span></div></li>
-          <li class="priority"><div><strong>Remove barriers and ease restrictions to streamline administrative procedures</strong><span class="cue">Chapter III(B), paras 46–47</span></div></li>
-          <li class="priority"><div><strong>Use dedicated legislation to accelerate development</strong><span class="cue">Chapter III(C), para 48</span></div></li>
-          <li class="priority"><div><strong>Expedite the Loop, San Tin Technopole, and transport infrastructure development</strong><span class="cue">Chapter III(D–F), paras 49–54</span></div></li>
-        </ul>
-      </section>
+    <section class="theme visible" data-theme="livelihood">
+      <div>
+        <h2>Reforms and livelihood</h2>
+        <span class="chapter-cue">Chapter I</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Deepen reforms and commit to people’s livelihood.</strong><span class="cue">Chapter I — “Deepen Reforms and Committed to People’s Livelihood”</span></li>
+        <li class="bullet"><strong>Improve people’s livelihood through better housing, higher income, elder care, and youth prospects.</strong><span class="cue">Chapter I, paragraph 1</span></li>
+        <li class="bullet"><strong>Link economic growth and livelihoods as mutually reinforcing policy pillars.</strong><span class="cue">Chapter I, paragraphs 2–4</span></li>
+        <li class="bullet"><strong>Address key living issues across housing, transport, healthcare, social welfare, labour protection, and inclusion.</strong><span class="cue">Chapter I, paragraph 8</span></li>
+      </ul>
+    </section>
 
-      <section class="theme" data-theme="industry">
-        <div><h2>Industry development</h2><span class="chapter">Chapter IV · paras 55–76</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Formulate preferential policy packages to attract more enterprises</strong><span class="cue">Chapter IV(A), paras 57–58</span></div></li>
-          <li class="priority"><div><strong>Attract and develop industries, including aircraft recycling and life and health technology</strong><span class="cue">Chapter IV(B), paras 59–64</span></div></li>
-          <li class="priority"><div><strong>Promote the development of the new energy industry</strong><span class="cue">Chapter IV(B), para 65</span></div></li>
-          <li class="priority"><div><strong>Promote AI and data science industries</strong><span class="cue">Chapter IV(B), paras 66–76</span></div></li>
-        </ul>
-      </section>
+    <section class="theme" data-theme="governance">
+      <div>
+        <h2>Governance systems</h2>
+        <span class="chapter-cue">Chapter II</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Steadfastly implement “One Country, Two Systems” and strengthen governance.</strong><span class="cue">Chapter II — “Steadfastly and Successfully Implement ‘One Country, Two Systems’ and Strengthen Our Governance Systems”</span></li>
+        <li class="bullet"><strong>Safeguard national security.</strong><span class="cue">Chapter II(A) — “Safeguard National Security”</span></li>
+        <li class="bullet"><strong>Implement “Patriots Administering Hong Kong.”</strong><span class="cue">Chapter II(A) — “Implement ‘Patriots Administering Hong Kong’”</span></li>
+        <li class="bullet"><strong>Promote patriotic education and strengthen district-level governance.</strong><span class="cue">Chapter II(B–C) — “Patriotic Education”; “Further Enhance Governance”</span></li>
+        <li class="bullet"><strong>Strengthen accountability, civil service performance appraisal, and AI efficacy.</strong><span class="cue">Chapter II(C), paragraphs 29–42</span></li>
+      </ul>
+    </section>
 
-      <section class="theme" data-theme="national">
-        <div><h2>National development</h2><span class="chapter">Chapter V · paras 77–89</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Position Hong Kong as a platform for overseas expansion</strong><span class="cue">Chapter V(A), paras 78–82</span></div></li>
-          <li class="priority"><div><strong>Deepen international exchanges and co-operation</strong><span class="cue">Chapter V(B), paras 83–87</span></div></li>
-          <li class="priority"><div><strong>Develop the Greater Bay Area</strong><span class="cue">Chapter V(C), paras 88–89</span></div></li>
-        </ul>
-      </section>
+    <section class="theme" data-theme="north">
+      <div>
+        <h2>Northern Metropolis</h2>
+        <span class="chapter-cue">Chapter III</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Establish the Committee on Development of the Northern Metropolis.</strong><span class="cue">Chapter III(A) — “Establish the Committee on Development of the Northern Metropolis”</span></li>
+        <li class="bullet"><strong>Remove barriers and ease restrictions to streamline administrative procedures.</strong><span class="cue">Chapter III(B) — “Remove Barriers and Ease Restrictions to Streamline Administrative Procedures”</span></li>
+        <li class="bullet"><strong>Use dedicated legislation to accelerate Northern Metropolis development.</strong><span class="cue">Chapter III(C) — “Dedicated Legislation to Accelerate the Development of Northern Metropolis”</span></li>
+        <li class="bullet"><strong>Expedite the Loop, the San Tin Technopole, and transport infrastructure development.</strong><span class="cue">Chapter III(D–F) — “Expedite the Development of the Loop”; “Development Outline for the San Tin Technopole”; “Expedite Transport Infrastructural Development”</span></li>
+      </ul>
+    </section>
 
-      <section class="theme" data-theme="hub">
-        <div><h2>International hub</h2><span class="chapter">Chapter VI · paras 90–133</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Consolidate the international financial centre</strong><span class="cue">Chapter VI(A), paras 91–105</span></div></li>
-          <li class="priority"><div><strong>Consolidate the international trade centre</strong><span class="cue">Chapter VI(B), paras 106–112</span></div></li>
-          <li class="priority"><div><strong>Consolidate the international shipping centre</strong><span class="cue">Chapter VI(C), paras 113–122</span></div></li>
-          <li class="priority"><div><strong>Consolidate the international aviation hub</strong><span class="cue">Chapter VI(D), paras 123–127</span></div></li>
-          <li class="priority"><div><strong>Develop the international legal and dispute resolution services centre</strong><span class="cue">Chapter VI(E), paras 128–133</span></div></li>
-        </ul>
-      </section>
+    <section class="theme" data-theme="industry">
+      <div>
+        <h2>Industry development and reform</h2>
+        <span class="chapter-cue">Chapter IV</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Formulate preferential policy packages to attract more enterprises.</strong><span class="cue">Chapter IV(A) — “Formulate Preferential Policy Packages to Attract More Enterprises”</span></li>
+        <li class="bullet"><strong>Attract and develop industries such as aircraft recycling and life and health technology.</strong><span class="cue">Chapter IV(B) — “Attract and Develop Industries”</span></li>
+        <li class="bullet"><strong>Promote the development of the new energy industry.</strong><span class="cue">Chapter IV(B) — “Promote the Development of the New Energy Industry”</span></li>
+        <li class="bullet"><strong>Promote the AI and data science industries.</strong><span class="cue">Chapter IV(B) — “Promote the Development of the AI and Data Science Industries”</span></li>
+      </ul>
+    </section>
 
-      <section class="theme" data-theme="talent">
-        <div><h2>Education, technology and talents</h2><span class="chapter">Chapter VII · paras 134–173</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Build an international education hub</strong><span class="cue">Chapter VII(A), paras 135–148</span></div></li>
-          <li class="priority"><div><strong>Build an international innovation and technology centre</strong><span class="cue">Chapter VII(B), paras 149–159</span></div></li>
-          <li class="priority"><div><strong>Develop a regional intellectual property trading centre</strong><span class="cue">Chapter VII(C), paras 160–164</span></div></li>
-          <li class="priority"><div><strong>Nurture talents through youth development and a talent pool</strong><span class="cue">Chapter VII(D), paras 165–173</span></div></li>
-        </ul>
-      </section>
+    <section class="theme" data-theme="national">
+      <div>
+        <h2>National development</h2>
+        <span class="chapter-cue">Chapter V</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Use Hong Kong as a platform for overseas expansion.</strong><span class="cue">Chapter V(A) — “Hong Kong as a Platform for Overseas Expansion”</span></li>
+        <li class="bullet"><strong>Deepen international exchanges and co-operation.</strong><span class="cue">Chapter V(B) — “Deepen International Exchanges and Co-operation”</span></li>
+        <li class="bullet"><strong>Develop the Greater Bay Area.</strong><span class="cue">Chapter V(C) — “Development of the Greater Bay Area”</span></li>
+      </ul>
+    </section>
 
-      <section class="theme" data-theme="culture">
-        <div><h2>Culture, sports and tourism</h2><span class="chapter">Chapter VIII · paras 174–205</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Develop an East-meets-West centre for international cultural exchange</strong><span class="cue">Chapter VIII(A), paras 175–184</span></div></li>
-          <li class="priority"><div><strong>Advance the &ldquo;Tourism is Everywhere&rdquo; approach</strong><span class="cue">Chapter VIII(B), paras 185–198</span></div></li>
-          <li class="priority"><div><strong>Promote sports development</strong><span class="cue">Chapter VIII(C), paras 199–205</span></div></li>
-        </ul>
-      </section>
+    <section class="theme" data-theme="hub">
+      <div>
+        <h2>International hub</h2>
+        <span class="chapter-cue">Chapter VI</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Consolidate Hong Kong’s status as an international financial centre.</strong><span class="cue">Chapter VI(A) — “International Financial Centre”</span></li>
+        <li class="bullet"><strong>Develop the international trade centre.</strong><span class="cue">Chapter VI(B) — “International Trade Centre”</span></li>
+        <li class="bullet"><strong>Develop the international shipping centre.</strong><span class="cue">Chapter VI(C) — “International Shipping Centre”</span></li>
+        <li class="bullet"><strong>Expand the international aviation hub.</strong><span class="cue">Chapter VI(D) — “International Aviation Hub”</span></li>
+        <li class="bullet"><strong>Strengthen the international legal and dispute resolution services centre.</strong><span class="cue">Chapter VI(E) — “International Legal and Dispute Resolution Services Centre”</span></li>
+      </ul>
+    </section>
 
-      <section class="theme" data-theme="society">
-        <div><h2>Stable living and inclusion</h2><span class="chapter">Chapter IX · paras 206–281</span></div>
-        <ul class="priorities">
-          <li class="priority"><div><strong>Increase housing supply and enrich the housing ladder</strong><span class="cue">Chapter IX(A), paras 207–214</span></div></li>
-          <li class="priority"><div><strong>Advance land development</strong><span class="cue">Chapter IX(B), paras 215–220</span></div></li>
-          <li class="priority"><div><strong>Enhance transport and commuting convenience</strong><span class="cue">Chapter IX(C), paras 221–225</span></div></li>
-          <li class="priority"><div><strong>Enhance healthcare</strong><span class="cue">Chapter IX(D), paras 226–234</span></div></li>
-          <li class="priority"><div><strong>Support the local economy, labour, and social welfare</strong><span class="cue">Chapter IX(F–H), paras 240–264</span></div></li>
-          <li class="priority"><div><strong>Promote social development in a caring and inclusive society</strong><span class="cue">Chapter IX(I), paras 265–281</span></div></li>
-        </ul>
-      </section>
-      <p class="empty" id="empty">No matching priorities found in the chapter and section headings.</p>
-    </main>
+    <section class="theme" data-theme="talent">
+      <div>
+        <h2>Education, technology and talents</h2>
+        <span class="chapter-cue">Chapter VII</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Build an international education hub.</strong><span class="cue">Chapter VII(A) — “Build an International Education Hub”</span></li>
+        <li class="bullet"><strong>Build an international innovation and technology centre.</strong><span class="cue">Chapter VII(B) — “International Innovation and Technology Centre”</span></li>
+        <li class="bullet"><strong>Develop a regional intellectual property trading centre.</strong><span class="cue">Chapter VII(C) — “Regional Intellectual Property Trading Centre”</span></li>
+        <li class="bullet"><strong>Nurture talents through youth development and a talent pool.</strong><span class="cue">Chapter VII(D) — “Nurture Talents”</span></li>
+      </ul>
+    </section>
 
-    <footer><strong>Reader's caution:</strong> This is a summary only; it is not official advice. Check the PDF for the full text, context, and any stated indicators.</footer>
+    <section class="theme" data-theme="culture">
+      <div>
+        <h2>Culture, sports and tourism</h2>
+        <span class="chapter-cue">Chapter VIII</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Develop an East-meets-West centre for international cultural exchange.</strong><span class="cue">Chapter VIII(A) — “East-meets-West Centre for International Cultural Exchange”</span></li>
+        <li class="bullet"><strong>Advance the “Tourism is Everywhere” approach.</strong><span class="cue">Chapter VIII(B) — “Tourism is Everywhere”</span></li>
+        <li class="bullet"><strong>Develop the yacht economy, mega events, cruise tourism, ecology-plus-tourism, and premium visitor attraction.</strong><span class="cue">Chapter VIII(B), sections 186–198</span></li>
+        <li class="bullet"><strong>Promote sports development and synergy among sports venues.</strong><span class="cue">Chapter VIII(C) — “Promote Sports Development”</span></li>
+      </ul>
+    </section>
+
+    <section class="theme" data-theme="society">
+      <div>
+        <h2>Stable living and inclusion</h2>
+        <span class="chapter-cue">Chapter IX</span>
+      </div>
+      <ul class="bullets">
+        <li class="bullet"><strong>Increase housing supply and enrich the housing ladder.</strong><span class="cue">Chapter IX(A) — “Increase Housing Supply and Enrich the Housing Ladder”</span></li>
+        <li class="bullet"><strong>Promote land development, urban renewal, and construction safety.</strong><span class="cue">Chapter IX(B) — “Land Development”; “Enhance Construction Safety”</span></li>
+        <li class="bullet"><strong>Enhance transport and commuting convenience.</strong><span class="cue">Chapter IX(C) — “Enhance Transport and Commuting Convenience”</span></li>
+        <li class="bullet"><strong>Strengthen the public healthcare system and primary healthcare services.</strong><span class="cue">Chapter IX(D) — “Healthcare”; “Strengthen Primary Healthcare Services”</span></li>
+        <li class="bullet"><strong>Support the local economy, labour protection, social welfare, and social development.</strong><span class="cue">Chapter IX(F–I) — “Support the Local Economy”; “Labour Support and Protection”; “Social Welfare”; “Social Development”</span></li>
+      </ul>
+    </section>
+
+    <p class="empty" id="empty">No matching priorities found in the PDF contents.</p>
+
+    <footer><strong>Summary only; not official advice.</strong> This page is a reading aid based only on the PDF table of contents and headings.</footer>
   </div>
+
   <script>
-    const tabs = [...document.querySelectorAll('.tab')];
-    const themes = [...document.querySelectorAll('.theme')];
-    const search = document.querySelector('#search');
-    const status = document.querySelector('#status');
-    const empty = document.querySelector('#empty');
-    let selected = 'all';
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const themes = Array.from(document.querySelectorAll('.theme'));
+    const search = document.getElementById('search');
+    const status = document.getElementById('status');
+    const empty = document.getElementById('empty');
+    let currentTheme = 'all';
 
     function render() {
       const query = search.value.trim().toLowerCase();
-      let count = 0;
+      let visibleCount = 0;
       themes.forEach(theme => {
-        const matchesTab = selected === 'all' || theme.dataset.theme === selected;
-        const matchingItems = [...theme.querySelectorAll('.priority')].filter(item => item.textContent.toLowerCase().includes(query));
-        theme.querySelectorAll('.priority').forEach(item => item.hidden = query && !item.textContent.toLowerCase().includes(query));
-        const visible = matchesTab && (query ? matchingItems.length > 0 : true);
-        theme.classList.toggle('visible', visible);
-        if (visible) count += matchingItems.length || theme.querySelectorAll('.priority').length;
+        const matchesTheme = currentTheme === 'all' || theme.dataset.theme === currentTheme;
+        const items = Array.from(theme.querySelectorAll('.bullet'));
+        const filtered = items.filter(item => item.textContent.toLowerCase().includes(query));
+
+        items.forEach(item => {
+          item.style.display = query && !filtered.includes(item) ? 'none' : 'block';
+        });
+
+        const show = matchesTheme && (query ? filtered.length > 0 : true);
+        theme.style.display = show ? 'grid' : 'none';
+        if (show) visibleCount += query ? filtered.length : items.length;
       });
-      empty.style.display = count ? 'none' : 'block';
-      status.textContent = query ? `${count} matching priorities` : `${count} priorities across ${themes.filter(theme => selected === 'all' || theme.dataset.theme === selected).length} themes`;
+
+      empty.style.display = visibleCount === 0 ? 'block' : 'none';
+      status.textContent = query
+        ? `${visibleCount} matching entries`
+        : `${visibleCount} entries shown`;
     }
 
-    tabs.forEach(tab => tab.addEventListener('click', () => {
-      selected = tab.dataset.theme;
-      tabs.forEach(button => {
-        const active = button === tab;
-        button.classList.toggle('active', active);
-        button.setAttribute('aria-pressed', active);
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        currentTheme = tab.dataset.theme;
+        tabs.forEach(button => {
+          const active = button === tab;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        render();
       });
-      render();
-    }));
+    });
+
     search.addEventListener('input', render);
     render();
   </script>
